@@ -15,7 +15,7 @@ echo
 echo "do not run as root!!"
 echo
 echo
-echo "Press any key to start after you have read the above..."
+echo "Press any enter to start after you have read the above..."
 read start
 echo 
 echo "Let's start with an up to date system"
