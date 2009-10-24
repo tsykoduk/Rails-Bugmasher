@@ -3,9 +3,11 @@
 pushd ~
 
 cat <<-BeginMessage
-Use this script to build a Debian/Arch Linux system for testing rails, or to build a rails dev system
+Use this script to build a Debian Linux system for testing rails, or to build a rails dev system
 
 Copyleft 2009 by Greg Nokes
+
+Built on the hypercool RVM
 
 Version 0.0.1
 
@@ -52,7 +54,7 @@ user_src_dir="${user_src_dir:-~/.src}"
 user_project_dir="${user_project_dir:-~/projects}"
 rails_test_command_prefix="${test_prefix:-"rails_test"}"
 ruby_versions="${ruby_versions:-"1.8.6,1.8.7,1.9.1,jruby,ree,rbx"}"
-rails_required_gems="rails rack rack-test mocha cucumber mysql postgres sqlite3-ruby memcached memcache-client builder bundler rvm mongrel mongrel_cluster passenger polyglot test-unit thin rspec rspec-rails treetop erubis term-ansicolor polyglot eventmachine diff-lcs daemons thoughbot-shoulda"
+rails_required_gems="rails rack rack-test mocha cucumber mysql postgres sqlite3-ruby memcached memcache-client builder bundler rvm mongrel mongrel_cluster passenger polyglot test-unit thin rspec rspec-rails treetop erubis term-ansicolor eventmachine diff-lcs daemons thoughbot-shoulda"
 
 mkdir -p "${user_bin_dir}" "${user_src_dir}" "${user_project_dir}"
 
@@ -102,4 +104,3 @@ HappyMessage
 
 popd
 exit 0
-
