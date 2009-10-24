@@ -27,8 +27,9 @@ sudo aptitude dist-upgrade -y
 echo 
 echo "We need to install some basic stuff"
 
-sudo aptitude install -y sudo build-essential git-core git-svn subversion ruby ruby-dev rubyGEMS mysql-server mysql-client sqlite3 nginx ssh postgresql memcached rake libmysqlclient-dev libpq-dev libsqlite3-dev curl wget sun-java6-jdk libreadline5-dev libssl-dev bison libopenssl-ruby
+sudo aptitude install -y sudo build-essential git-core git-svn subversion  mysql-server mysql-client sqlite3 nginx ssh postgresql memcached rake libmysqlclient-dev libpq-dev libsqlite3-dev curl wget sun-java6-jdk libreadline5-dev libssl-dev bison 
 
+#packages no longer needed because of RVM: ruby ruby-dev rubyGEMS libopenssl-ruby
 
 sudo /etc/init.d/mysql restart
 sudo /etc/init.d/postgresql-8.4 restart
@@ -52,7 +53,8 @@ echo "We need to install some basic ruby stuff"
 
 GEMS="rails rack rack-test mocha cucumber mysql postgres sqlite3-ruby memcached memcache-client builder bundler rvm mongrel mongrel_cluster passenger polyglot test-unit thin rspec rspec-rails treetop erubis term-ansicolor polyglot eventmachine diff-lcs daemons thoughbot-shoulda"
 
-sudo gem install --no-rdoc --no-ri ${GEMS}
+# removing system rubies.
+# sudo gem install --no-rdoc --no-ri ${GEMS}
 
 echo
 echo "Install lots of rubies"
