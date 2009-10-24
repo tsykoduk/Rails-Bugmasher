@@ -15,7 +15,7 @@ echo
 echo "do not run as root!!"
 echo
 echo
-echo "Press any key to start after you hace read the above…"
+echo "Press any key to start after you have read the above..."
 read start
 echo 
 echo "Let's start with an up to date system"
@@ -39,7 +39,7 @@ echo "If you installed updates, a reboot at this point would not be unwarrented.
 echo "Reboot? [yes/no] "
 read REBOOT
 
-if (($REBOOT = "yes")); then
+if (($REBOOT == "yes")); then
 	echo "rebooting system"
 	sudo reboot
 else
@@ -62,21 +62,32 @@ cd ~
 
 source ~/.rvm/scripts/rvm
 
+echo
 echo "Install ruby 1.8.6."
 rvm install 1.8.6
 rvm 1.8.6 gem install --no-rdoc --no-ri ${GEMS}
+
+echo
 echo "Install ruby 1.8.7."
 rvm install 1.8.7
 rvm 1.8.7 gem install --no-rdoc --no-ri ${GEMS}
+
+echo
 echo "Install ruby 1.9.1."
 rvm install 1.9.1
 rvm 1.9.1 gem install --no-rdoc --no-ri ${GEMS}
+
+echo
 echo "Install jruby"
 rvm install jruby
 rvm jruby gem install --no-rdoc --no-ri ${GEMS}
+
+echo
 echo "Install ruby enterprise"
 rvm install ree
 rvm ree gem install --no-rdoc --no-ri ${GEMS}
+
+echo
 echo "Install ruby Rubinus"
 rvm install rbx
 rvm rbx gem install --no-rdoc --no-ri ${GEMS}
@@ -124,9 +135,5 @@ echo "the verbose tester runs the standard tests vs the rails in ~/code with all
 echo "If you want to just test vs one version of ruby, just rvm use that version, and then run rake test"
 echo "If you want more simple then that - ignore rvm and just rake test rails"
 
-echo
-echo "As a baseline, let's test rails verse the system ruby"
-
-cd ~
 echo
 echo "all done.... happy bugmashing"
