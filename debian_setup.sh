@@ -1,132 +1,114 @@
 #! /bin/bash
 
-#######
-echo "Use this script to build a Debian system for testing rails, or to build a rails dev system"
-echo "Copyleft 2009 by Greg Nokes"
-echo 
-echo "Version 0.1"
-echo "Use at your own risk, yadda yadda yadda"
-echo "tested vs Ubuntu Karmic. Any recient debian _should_ work"
-echo "centos not so much"
-echo 
-echo "it's a lot easier if you have passwordless sudo set up "
-echo
-echo
-echo "do not run as root!!"
-echo
-echo
-echo "Press any enter to start after you have read the above..."
-read start
-echo 
-echo "Let's start with an up to date system"
+pushd ~
 
-sudo aptitude update
-sudo aptitude safe-upgrade -y
-sudo aptitude dist-upgrade -y
+cat <<-BeginMessage
+Use this script to build a Debian/Arch Linux system for testing rails, or to build a rails dev system
 
-echo 
-echo "We need to install some basic stuff"
+Copyleft 2009 by Greg Nokes
 
-sudo aptitude install -y sudo build-essential git-core git-svn subversion ruby ruby-dev rubyGEMS mysql-server mysql-client sqlite3 nginx ssh postgresql memcached rake libmysqlclient-dev libpq-dev libsqlite3-dev curl wget sun-java6-jdk libreadline5-dev libssl-dev bison libopenssl-ruby
+Version 0.0.1
 
+Use at your own risk, yadda yadda yadda
+tested vs Ubuntu Karmic. Any recient debian _should_ work
+centos not so much
+
+do *NOT* run as root!!
+
+Now bringing the base system up to date...
+BeginMessage
+
+#
+# System Update
+#
+which aptitude
+if [[ $? -eq 0 ]] ; then
+  sudo aptitude update
+  sudo aptitude safe-upgrade -y
+  sudo aptitude dist-upgrade -y
+else
+  which pacman
+  if [[ $? -eq 0 ]] ; then
+    pacman -Syu
+  fi
+fi
+
+#
+# System Libraries
+#
+echo -e "\nNow installing rails test suite required system libraries..."
+sudo aptitude install -y sudo build-essential git-core git-svn subversion ruby-dev mysql-server mysql-client sqlite3 nginx ssh postgresql memcached rake libmysqlclient-dev libpq-dev libsqlite3-dev curl wget sun-java6-jdk libreadline5-dev libssl-dev bison libopenssl-ruby
 
 sudo /etc/init.d/mysql restart
 sudo /etc/init.d/postgresql-8.4 restart
 sudo /etc/init.d/memcached restart
 sudo /etc/init.d/nginx restart
 
-echo "If you installed updates, a reboot at this point would not be unwarrented."
-# TODO: this appears to be borked. Need to fix
-# echo "Reboot? [yes/no] "
-# read REBOOT
+echo -e "If you installed any system updates, a reboot at this point would be advisable, do you wish to reboot?\n(type 'yes' or 'no')> "
+read response
+if [[ "yes" = "$response" ]] ; then
+  sudo reboot
+else
+  echo -e "Skipping reboot."
+fi
 
-# if (($REBOOT == "yes")); then
-#	echo "rebooting system"
-#	sudo reboot
-# else
-#	echo "skipping reboot"
-# fi
+#
+# User configurable settings
+#
+user_bin_dir="${user_bin_dir:-$user_bin_dir}"
+user_src_dir="${user_src_dir:-~/.src}"
+user_project_dir="${user_project_dir:-~/projects}"
+rails_test_command_prefix="${test_prefix:-"rails_test"}"
+ruby_versions="${ruby_versions:-"1.8.6,1.8.7,1.9.1,jruby,ree,rbx"}"
+rails_required_gems="rails rack rack-test mocha cucumber mysql postgres sqlite3-ruby memcached memcache-client builder bundler rvm mongrel mongrel_cluster passenger polyglot test-unit thin rspec rspec-rails treetop erubis term-ansicolor polyglot eventmachine diff-lcs daemons thoughbot-shoulda"
 
-echo 
-echo "We need to install some basic ruby stuff"
+mkdir -p "${user_bin_dir}" "${user_src_dir}" "${user_project_dir}"
 
-GEMS="rails rack rack-test mocha cucumber mysql postgres sqlite3-ruby memcached memcache-client builder bundler rvm mongrel mongrel_cluster passenger polyglot test-unit thin rspec rspec-rails treetop erubis term-ansicolor polyglot eventmachine diff-lcs daemons thoughbot-shoulda"
+echo "PATH=${PATH}:${user_bin_dir} ; export PATH" >> ~/.bash_profile
 
-sudo gem install --no-rdoc --no-ri ${GEMS}
+#
+# rvm, rubies and gems
+#
+sudo echo "gem: --no-rdoc --no-ri" > /etc/gemrc
 
-echo
-echo "Install lots of rubies"
+echo -e "\nInstalling and configuring rvm..."
+cd "$user_src_dir" && git clone git://github.com/wayneeseguin/rvm.git && cd rvm && ./install
+echo "rvm_install_on_use_flag=1" > ~/.rvmrc
 
-git clone git://github.com/wayneeseguin/rvm.git && cd rvm && ./install
+source ~/.bash_profile
 
-cd ~
+echo -e "\nInstalling rubies and gems with rvm..."
+rvm "${ruby_versions}" install
+rvm "${ruby_versions}" gem install "${rails_required_gems}"
 
-source ~/.rvm/scripts/rvm
+echo -e "\nFetching edge rails into the project directory '${user_project_dir}'"
 
-echo
-echo "Install ruby 1.8.6."
-rvm install 1.8.6 && rvm 1.8.6 gem install --no-rdoc --no-ri ${GEMS}
+cd "$user_project_dir" && git clone git://github.com/rails/rails.git rails && cd rails/actionpack && gem bundle
 
-echo
-echo "Install ruby 1.8.7."
-rvm install 1.8.7 && rvm 1.8.7 gem install --no-rdoc --no-ri ${GEMS}
+echo "Fetching Cinabox"
+cd "$user_project_dir" && git clone git://github.com/thewoolleyman/cinabox.git cinabox
 
-echo
-echo "Install ruby 1.9.1."
-rvm install 1.9.1 && rvm 1.9.1 gem install --no-rdoc --no-ri ${GEMS}
+for type in json yaml verbose ; do
+  echo -e "Creating ${test_prefix}_${type} script."
 
-echo
-echo "Install jruby"
-rvm install jruby && rvm jruby gem install --no-rdoc --no-ri ${GEMS}
+  echo -e "# /bin/bash\nsource ~/.rvm/scripts/rvm;cd $user_project_dir/rails && rvm rake test" > "${user_bin_dir}/${test_prefix}_verbose"
 
-echo
-echo "Install ruby enterprise"
-rvm install ree && rvm ree gem install --no-rdoc --no-ri ${GEMS}
+  chmod 700 "${user_bin_dir}/${test_prefix}_${type}"
+done
 
-echo
-echo "Install ruby Rubinus"
-rvm install rbx
-rvm rbx gem install --no-rdoc --no-ri ${GEMS}
+cat <<-HappyMessage
 
-echo "Let's start setting up the real stuff we need"
-echo "we work out of the ~/code directory"
-mkdir ~/code
+Notes:
 
-echo "OK. get edge rails"
+  * To run the rails test suite against all installed rubies simply run either ${test_prefix}_json or ${test_prefix}_verbose or ${test_prefix}_yaml
+  * The verbose tester runs the standard tests vs the rails in $user_project_dir with all installed rubies
+  * If you want to just test vs one version of ruby, just rvm use that version, and then run rake test
+  * This script does not setup cinabox - if you want cinabox setup you will need to do it yourself.
 
-cd ~/code
-git clone git://github.com/rails/rails.git rails
-cd rails && cd actionpack && gem bundle
+all done.... happy bugmashing!!!
 
-cd ~/code
-echo "OK, get Cinabox"
-git clone git://github.com/thewoolleyman/cinabox.git cinabox
-echo "we don't setup cinabox - if you want it, do it"
+HappyMessage
 
-echo
-echo "Building our test script"
-cd ~
+popd
+exit 0
 
-echo "#! /bin/bash
-if [ -s ~/.rvm/scripts/rvm ] ; then source ~/.rvm/scripts/rvm ; fi
-cd ~/code/rails
-rvm 1.8.6,1.8.7,ree,jruby,1.9.1,rbx --json rake test
-cd ~
-" > json_test_rails.sh && chmod 700 json_test_rails.sh
-
-echo "the json_test_rails file will test the rails in ~/code with json style output vs all installed rubies"
-
-echo "# /bin/bash
-if [ -s ~/.rvm/scripts/rvm ] ; then source ~/.rvm/scripts/rvm ; fi
-cd ~/code/rails
-rvm 1.8.6,1.8.7,ree,jruby,1.9.1,rbx  rake test
-cd ~
-" > verbose_test_rails.sh && chmod 700 verbose_test_rails.sh
-
-echo
-echo "the verbose tester runs the standard tests vs the rails in ~/code with all installed rubies"
-echo "If you want to just test vs one version of ruby, just rvm use that version, and then run rake test"
-echo "If you want more simple then that - ignore rvm and just rake test rails"
-
-echo
-echo "all done.... happy bugmashing"
