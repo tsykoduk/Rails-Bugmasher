@@ -36,15 +36,16 @@ sudo /etc/init.d/memcached restart
 sudo /etc/init.d/nginx restart
 
 echo "If you installed updates, a reboot at this point would not be unwarrented."
-echo "Reboot? [yes/no] "
-read REBOOT
+# TODO: this appears to be borked. Need to fix
+# echo "Reboot? [yes/no] "
+# read REBOOT
 
-if (($REBOOT == "yes")); then
-	echo "rebooting system"
-	sudo reboot
-else
-	echo "skipping reboot"
-fi
+# if (($REBOOT == "yes")); then
+#	echo "rebooting system"
+#	sudo reboot
+# else
+#	echo "skipping reboot"
+# fi
 
 echo 
 echo "We need to install some basic ruby stuff"
@@ -64,28 +65,23 @@ source ~/.rvm/scripts/rvm
 
 echo
 echo "Install ruby 1.8.6."
-rvm install 1.8.6
-rvm 1.8.6 gem install --no-rdoc --no-ri ${GEMS}
+rvm install 1.8.6 && rvm 1.8.6 gem install --no-rdoc --no-ri ${GEMS}
 
 echo
 echo "Install ruby 1.8.7."
-rvm install 1.8.7
-rvm 1.8.7 gem install --no-rdoc --no-ri ${GEMS}
+rvm install 1.8.7 && rvm 1.8.7 gem install --no-rdoc --no-ri ${GEMS}
 
 echo
 echo "Install ruby 1.9.1."
-rvm install 1.9.1
-rvm 1.9.1 gem install --no-rdoc --no-ri ${GEMS}
+rvm install 1.9.1 && rvm 1.9.1 gem install --no-rdoc --no-ri ${GEMS}
 
 echo
 echo "Install jruby"
-rvm install jruby
-rvm jruby gem install --no-rdoc --no-ri ${GEMS}
+rvm install jruby && rvm jruby gem install --no-rdoc --no-ri ${GEMS}
 
 echo
 echo "Install ruby enterprise"
-rvm install ree
-rvm ree gem install --no-rdoc --no-ri ${GEMS}
+rvm install ree && rvm ree gem install --no-rdoc --no-ri ${GEMS}
 
 echo
 echo "Install ruby Rubinus"
@@ -100,9 +96,8 @@ echo "OK. get edge rails"
 
 cd ~/code
 git clone git://github.com/rails/rails.git rails
-cd rails
-cd actionpack
-gem bundle
+cd rails && cd actionpack && gem bundle
+
 cd ~/code
 echo "OK, get Cinabox"
 git clone git://github.com/thewoolleyman/cinabox.git cinabox
@@ -117,8 +112,7 @@ if [ -s ~/.rvm/scripts/rvm ] ; then source ~/.rvm/scripts/rvm ; fi
 cd ~/code/rails
 rvm 1.8.6,1.8.7,ree,jruby,1.9.1,rbx --json rake test
 cd ~
-" > json_test_rails.sh
-chmod 700 json_test_rails.sh
+" > json_test_rails.sh && chmod 700 json_test_rails.sh
 
 echo "the json_test_rails file will test the rails in ~/code with json style output vs all installed rubies"
 
@@ -127,8 +121,7 @@ if [ -s ~/.rvm/scripts/rvm ] ; then source ~/.rvm/scripts/rvm ; fi
 cd ~/code/rails
 rvm 1.8.6,1.8.7,ree,jruby,1.9.1,rbx  rake test
 cd ~
-" > verbose_test_rails.sh
-chmod 700 verbose_test_rails.sh
+" > verbose_test_rails.sh && chmod 700 verbose_test_rails.sh
 
 echo
 echo "the verbose tester runs the standard tests vs the rails in ~/code with all installed rubies"
