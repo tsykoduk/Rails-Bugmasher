@@ -128,7 +128,6 @@ cd ~
 echo
 echo "the verbose tester runs the standard tests vs the rails in ~/code with all installed rubies"
 echo "If you want to just test vs one version of ruby, just rvm use that version, and then run rake test"
-echo "If you want more simple then that - ignore rvm and just rake test rails"
 
 echo
 echo "all done.... happy bugmashing"
