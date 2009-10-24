@@ -21,17 +21,9 @@ BeginMessage
 #
 # System Update
 #
-which aptitude
-if [[ $? -eq 0 ]] ; then
-  sudo aptitude update
-  sudo aptitude safe-upgrade -y
-  sudo aptitude dist-upgrade -y
-else
-  which pacman
-  if [[ $? -eq 0 ]] ; then
-    pacman -Syu
-  fi
-fi
+sudo aptitude update
+sudo aptitude safe-upgrade -y
+sudo aptitude dist-upgrade -y
 
 #
 # System Libraries
@@ -82,7 +74,6 @@ rvm "${ruby_versions}" install
 rvm "${ruby_versions}" gem install "${rails_required_gems}"
 
 echo -e "\nFetching edge rails into the project directory '${user_project_dir}'"
-
 cd "$user_project_dir" && git clone git://github.com/rails/rails.git rails && cd rails/actionpack && gem bundle
 
 echo "Fetching Cinabox"
