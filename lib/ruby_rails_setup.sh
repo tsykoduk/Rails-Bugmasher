@@ -13,9 +13,6 @@ cd ~
 ruby_versions="${ruby_versions:-"1.8.6 1.8.7 1.9.1 jruby ree"}"
 rails_required_gems="rails rack rack-test cucumber mocha rspec rspec-rails mysql postgres sqlite3-ruby memcached memcache-client builder bundler mongrel mongrel_cluster passenger thin polyglot test-unit treetop erubis term-ansicolor eventmachine diff-lcs daemons"
 
-mkdir -p "${user_bin_dir}" "${user_src_dir}" "${user_project_dir}"
-
-echo "PATH=${PATH}:${user_bin_dir} ; export PATH" >> ~/.bash_profile
 
 #
 # rvm, rubies and gems
