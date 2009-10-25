@@ -33,25 +33,31 @@ echo
 read response 
 case $response in
 	[0]*)
+		echo
 		echo "Installing Rubies"
 		./lib/ruby_rails_setup.sh
 		echo
 	;;
 	[1]*)
+		echo
 		echo "Archlinux Support Not Implemtented. Sorry"
 	;;
 	[2]*)
+		echo
 		echo "Centos support not done yet. Sorry"
 	;;
 	[3]*)
+		echo
 		echo "Installing Debain Support"
 		./lib/debian_setup.sh
 		echo
 	;;
 	[4]*)
+		echo
 		echo "Gentoo Support Coming"
 	;;
 	[5]*)
+		echo
 		echo "Snow Lepoard Support soon"
 	;;
 esac
