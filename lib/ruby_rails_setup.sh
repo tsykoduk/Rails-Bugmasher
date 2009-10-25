@@ -35,7 +35,10 @@ do
 	echo "installing '${ruby}'"
 	rvm ${ruby} install
 	echo "installing gems : '${rails_required_gems}'"
-	rvm ${ruby} gem install ${rails_required_gems}
+	for gem in $rails_required_gems
+	do
+		rvm ${ruby} gem install ${gem}
+	done
 done
 
 mkdir ~/projects
