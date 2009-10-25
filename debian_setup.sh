@@ -42,6 +42,7 @@ echo -e "If you installed any system updates, a reboot at this point would be ad
 read response
 if [[ "yes" = "$response" ]] ; then
   sudo reboot
+  read tmp_pause
 else
   echo -e "Skipping reboot."
 fi
@@ -50,11 +51,11 @@ fi
 # User configurable settings
 #
 user_bin_dir="${user_bin_dir:-$user_bin_dir}"
-user_src_dir="${user_src_dir:-~/.src}"
-user_project_dir="${user_project_dir:-~/projects}"
+user_src_dir="${user_src_dir:-.src}"
+user_project_dir="${user_project_dir:-projects}"
 rails_test_command_prefix="${test_prefix:-"rails_test"}"
 ruby_versions="${ruby_versions:-"1.8.6,1.8.7,1.9.1,jruby,ree,rbx"}"
-rails_required_gems="rails rack rack-test mocha cucumber mysql postgres sqlite3-ruby memcached memcache-client builder bundler rvm mongrel mongrel_cluster passenger polyglot test-unit thin rspec rspec-rails treetop erubis term-ansicolor eventmachine diff-lcs daemons thoughbot-shoulda"
+rails_required_gems="rails rack rack-test cucumber mocha rspec rspec-rails mysql postgres sqlite3-ruby memcached memcache-client builder bundler mongrel mongrel_cluster passenger thin polyglot test-unit treetop erubis term-ansicolor eventmachine diff-lcs daemons shoulda"
 
 mkdir -p "${user_bin_dir}" "${user_src_dir}" "${user_project_dir}"
 
@@ -63,6 +64,7 @@ echo "PATH=${PATH}:${user_bin_dir} ; export PATH" >> ~/.bash_profile
 #
 # rvm, rubies and gems
 #
+
 sudo echo "gem: --no-rdoc --no-ri" > /etc/gemrc
 
 echo -e "\nInstalling and configuring rvm..."
