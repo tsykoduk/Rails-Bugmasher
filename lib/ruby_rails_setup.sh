@@ -38,8 +38,11 @@ echo -e "\nInstalling rubies and gems with rvm..."
 
 for ruby in $ruby_versions
 do
-	rvm $ruby install
-	rvm $ruby gem install $rails_required_gems
+	echo
+	echo "installing '${ruby}'"
+	rvm ${ruby} install
+	echo "installing gems : '${rails_required_gems}'"
+	rvm ${ruby} gem install ${rails_required_gems}
 done
 
 echo -e "\nFetching edge rails into the project directory '${user_project_dir}'"

@@ -1,5 +1,6 @@
 #! /bin/bash
 
+clear
 cat <<-BeginMessage
 Use this script to build a *nix system for testing rails, or to build a rails dev system
 
