@@ -37,6 +37,7 @@ do
 	echo "installing gems : '${rails_required_gems}'"
 	for gem in $rails_required_gems
 	do
+		echo "installing ${gem}..."
 		rvm ${ruby} gem install ${gem}
 	done
 done
