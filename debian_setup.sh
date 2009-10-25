@@ -80,7 +80,7 @@ rvm "${ruby_versions}" gem install "${rails_required_gems}"
 echo -e "\nFetching edge rails into the project directory '${user_project_dir}'"
 cd "$user_project_dir" && git clone git://github.com/rails/rails.git rails && cd rails/actionpack && gem bundle
 
-echo "Fetching Cinabox"
+echo "Fetching Cinabox into the project directory ''${user_project_dir}'"
 cd "$user_project_dir" && git clone git://github.com/thewoolleyman/cinabox.git cinabox
 
 for type in json yaml verbose ; do
