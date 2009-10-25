@@ -35,7 +35,7 @@ read response
 case $response in
 	[0]*)
 		echo "Installing Rubies"
-		./lib/ruby_rails_setup.sh
+		lib/ruby_rails_setup.sh
 	;;
 	[1]*)
 		echo "Archlinux Support Not Implemtented. Sorry"
@@ -45,7 +45,7 @@ case $response in
 	;;
 	[3]*)
 		echo "Installing Debain Support"
-		./lib/debian_setup.sh
+		lib/debian_setup.sh
 	;;
 	[4]*)
 		echo "Gentoo Support Coming"
