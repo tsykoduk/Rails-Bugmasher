@@ -21,54 +21,61 @@ BeginMessage
 
 #menu here
 
-echo "Choose one of the following:"
-echo "0 After Distro Run, Install Rubies"
-echo "1 Install Archlinux Support (Not Done)"
-echo "2 Install Centos Support (Not Done)"
-echo "3 Install Debian/Ubuntu Support"
-echo "4 Install Gentoo Support (Not Done)"
-echo "5 Install Snow Lepoard Support (Not Done)"
-echo
+while :
+	do
 
-read response 
-case $response in
-	[0]*)
+		echo "Choose one of the following:"
+		echo "0 After Distro Run, Install Rubies"
+		echo "1 Install Archlinux Support (Not Done)"
+		echo "2 Install Centos Support (Not Done)"
+		echo "3 Install Debian/Ubuntu Support"
+		echo "4 Install Gentoo Support (Not Done)"
+		echo "5 Install Snow Lepoard Support (Not Done)"
+		echo "q Quit"
 		echo
-		echo "Installing Rubies"
-		./lib/ruby_rails_setup.sh
-		echo
-	;;
-	[1]*)
-		echo
-		echo "Archlinux Support Not Implemtented. Sorry"
-	;;
-	[2]*)
-		echo
-		echo "Centos support not done yet. Sorry"
-	;;
-	[3]*)
-		echo
-		echo "Installing Debain Support"
-		./lib/debian_setup.sh
-		echo
-	;;
-	[4]*)
-		echo
-		echo "Gentoo Support Coming"
-	;;
-	[5]*)
-		echo
-		echo "Snow Lepoard Support soon"
-	;;
-esac
 
-cat <<-HappyMessage
+		read response 
+		case $response in
+			[0]*)
+				echo
+				echo "Installing Rubies"
+				./lib/ruby_rails_setup.sh
+				echo
+			;;
+			[1]*)
+				echo
+				echo "Archlinux Support Not Implemtented. Sorry"
+			;;
+			[2]*)
+				echo
+				echo "Centos support not done yet. Sorry"
+			;;
+			[3]*)
+				echo
+				echo "Installing Debain Support"
+				./lib/debian_setup.sh
+				echo
+			;;
+			[4]*)
+				echo
+				echo "Gentoo Support Coming"
+			;;
+			[5]*)
+				echo
+				echo "Snow Lepoard Support soon"
+			;;
+			[q]*)
+				echo
+				echo "Happy Bugmashing!"
+				echo
+				cat <<-HappyMessage
 
-Notes:
-	* Something pithy will be added here soon
-	* http://www.youtube.com/watch?v=IhJQp-q1Y1s
+				Notes:
+				* Something pithy will be added here soon
+				* http://www.youtube.com/watch?v=IhJQp-q1Y1s
 
-HappyMessage
+				HappyMessage
 
-popd
-exit 0
+				exit 0
+		esac
+	done	
