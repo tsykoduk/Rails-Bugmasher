@@ -14,7 +14,7 @@ user_bin_dir="${user_bin_dir:-$user_bin_dir}"
 user_src_dir="${user_src_dir:-.src}"
 user_project_dir="${user_project_dir:-projects}"
 rails_test_command_prefix="${test_prefix:-"rails_test"}"
-ruby_versions="${ruby_versions:-"1.8.6,1.8.7,1.9.1,jruby,ree,rbx"}"
+ruby_versions="${ruby_versions:-"1.8.6 1.8.7 1.9.1 jruby ree rbx"}"
 rails_required_gems="rails rack rack-test cucumber mocha rspec rspec-rails mysql postgres sqlite3-ruby memcached memcache-client builder bundler mongrel mongrel_cluster passenger thin polyglot test-unit treetop erubis term-ansicolor eventmachine diff-lcs daemons shoulda"
 
 mkdir -p "${user_bin_dir}" "${user_src_dir}" "${user_project_dir}"
@@ -26,7 +26,7 @@ echo "PATH=${PATH}:${user_bin_dir} ; export PATH" >> ~/.bash_profile
 #
 
 echo "gem: --no-rdoc --no-ri" > ~/gemrc
-sudo move ./gemrc /etc/
+sudo mv ./gemrc /etc/
 
 echo -e "\nInstalling and configuring rvm..."
 cd "$user_src_dir" && git clone git://github.com/wayneeseguin/rvm.git && cd rvm && ./install
