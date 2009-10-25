@@ -17,6 +17,7 @@ centos not so much
 
 do *NOT* run as root!!
 
+
 Now bringing the base system up to date...
 BeginMessage
 
