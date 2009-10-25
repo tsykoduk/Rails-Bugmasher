@@ -31,25 +31,36 @@ sudo aptitude dist-upgrade -y
 # System Libraries
 #
 echo -e "\nNow installing rails test suite required system libraries..."
-sudo aptitude install -y sudo build-essential git-core git-svn subversion ruby-dev mysql-server mysql-client sqlite3 nginx ssh postgresql memcached rake libmysqlclient-dev libpq-dev libsqlite3-dev curl wget sun-java6-jdk libreadline5-dev libssl-dev bison libopenssl-ruby zlib1g zlib1g-dev libxml2 libxml2-dev libxslt-dev locate libssl-dev openssl
+sudo aptitude install -y sudo build-essential git-core git-svn subversion ruby-dev mysql-server mysql-client sqlite3 nginx ssh postgresql memcached rake libmysqlclient-dev libpq-dev libsqlite3-dev curl wget sun-java6-jdk libreadline5-dev libssl-dev bison libopenssl-ruby libz-dev zlib1g zlib1g-dev libxml2 libxml2-dev libxslt-dev locate libssl-dev openssl
 
 sudo /etc/init.d/mysql restart
 sudo /etc/init.d/postgresql-8.4 restart
 sudo /etc/init.d/memcached restart
 sudo /etc/init.d/nginx restart
 
-echo -e "If you installed any system updates, a reboot at this point would be advisable, do you wish to reboot?\n(type 'yes' or 'no')> "
+echo -e "If you installed any system updates, a reboot at this point would be advisable, do you wish to reboot?\n(type 'yes' or 'no') > "
 read response
 if [[ "yes" = "$response" ]] ; then
   sudo reboot
+  echo -e "Pausing processing. do not touch your keyboard, we have control"
   read tmp_pause
 else
   echo -e "Skipping reboot."
 fi
 
+
+# Install rvm and Ruby
+#
 #
 # User configurable settings
 #
+# let's make sure we are somewhere sane
+
+cd ~
+#
+# Ok, let's move on
+#
+
 user_bin_dir="${user_bin_dir:-$user_bin_dir}"
 user_src_dir="${user_src_dir:-.src}"
 user_project_dir="${user_project_dir:-projects}"
@@ -65,7 +76,8 @@ echo "PATH=${PATH}:${user_bin_dir} ; export PATH" >> ~/.bash_profile
 # rvm, rubies and gems
 #
 
-sudo echo "gem: --no-rdoc --no-ri" > /etc/gemrc
+echo "gem: --no-rdoc --no-ri" > ~/gemrc
+sudo move ./gemrc /etc/
 
 echo -e "\nInstalling and configuring rvm..."
 cd "$user_src_dir" && git clone git://github.com/wayneeseguin/rvm.git && cd rvm && ./install
