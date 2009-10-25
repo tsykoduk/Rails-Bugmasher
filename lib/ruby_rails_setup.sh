@@ -10,12 +10,8 @@ cd ~
 # Ok, let's move on
 #
 
-user_bin_dir="${user_bin_dir:-$user_bin_dir}"
-user_src_dir="${user_src_dir:-.src}"
-user_project_dir="${user_project_dir:-projects}"
-rails_test_command_prefix="${test_prefix:-"rails_test"}"
-ruby_versions="${ruby_versions:-"1.8.6 1.8.7 1.9.1 jruby ree rbx"}"
-rails_required_gems="rails rack rack-test cucumber mocha rspec rspec-rails mysql postgres sqlite3-ruby memcached memcache-client builder bundler mongrel mongrel_cluster passenger thin polyglot test-unit treetop erubis term-ansicolor eventmachine diff-lcs daemons shoulda"
+ruby_versions="${ruby_versions:-"1.8.6 1.8.7 1.9.1 jruby ree"}"
+rails_required_gems="rails rack rack-test cucumber mocha rspec rspec-rails mysql postgres sqlite3-ruby memcached memcache-client builder bundler mongrel mongrel_cluster passenger thin polyglot test-unit treetop erubis term-ansicolor eventmachine diff-lcs daemons"
 
 mkdir -p "${user_bin_dir}" "${user_src_dir}" "${user_project_dir}"
 
@@ -45,19 +41,18 @@ do
 	rvm ${ruby} gem install ${rails_required_gems}
 done
 
-echo -e "\nFetching edge rails into the project directory '${user_project_dir}'"
-cd "$user_project_dir" && git clone git://github.com/rails/rails.git rails && cd rails/actionpack && gem bundle
+mkdir ~/projects
 
-echo "Fetching Cinabox into the project directory ''${user_project_dir}'"
-cd "$user_project_dir" && git clone git://github.com/thewoolleyman/cinabox.git cinabox
+echo -e "\nFetching edge rails"
+echo
+cd ~/projects && git clone git://github.com/rails/rails.git rails && cd rails/actionpack && gem bundle
 
-for type in json yaml verbose ; do
-  echo -e "Creating ${test_prefix}_${type} script."
+echo "Fetching Cinabox"
+echo
+cd ~/projects && git clone git://github.com/thewoolleyman/cinabox.git cinabox
 
-  echo -e "# /bin/bash\nsource ~/.rvm/scripts/rvm;cd $user_project_dir/rails && rvm rake test" > "${user_bin_dir}/${test_prefix}_verbose"
+cp ./testers/* ~/projects/
 
-  chmod 700 "${user_bin_dir}/${test_prefix}_${type}"
-done
 
 cat <<-HappyMessage
 
@@ -71,3 +66,7 @@ Notes:
 all done.... happy bugmashing!!!
 
 HappyMessage
+
+echo pause
+echo
+read pause
