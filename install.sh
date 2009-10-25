@@ -65,6 +65,7 @@ while :
 				echo "Snow Lepoard Support soon"
 			;;
 			[q]*)
+				clear
 				echo
 				echo "Happy Bugmashing!"
 				echo
