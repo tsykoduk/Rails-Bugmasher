@@ -28,12 +28,14 @@ echo "2 Install Centos Support (Not Done)"
 echo "3 Install Debian/Ubuntu Support"
 echo "4 Install Gentoo Support (Not Done)"
 echo "5 Install Snow Lepoard Support (Not Done)"
+echo
 
 read response 
 case $response in
 	[0]*)
 		echo "Installing Rubies"
 		./lib/ruby_rails_setup.sh
+		echo
 	;;
 	[1]*)
 		echo "Archlinux Support Not Implemtented. Sorry"
@@ -44,6 +46,7 @@ case $response in
 	[3]*)
 		echo "Installing Debain Support"
 		./lib/debian_setup.sh
+		echo
 	;;
 	[4]*)
 		echo "Gentoo Support Coming"
