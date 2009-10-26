@@ -13,7 +13,7 @@ cd ~
 #you can add jruby if you want to
 
 ruby_versions="${ruby_versions:-"1.8.6 1.8.7 1.9.1 ree"}"
-rails_required_gems="rails rack rack-test cucumber mocha rspec rspec-rails mysql postgres sqlite3-ruby memcached memcache-client builder bundler mongrel mongrel_cluster passenger thin polyglot test-unit treetop erubis term-ansicolor eventmachine diff-lcs daemons RedCloth multimap abstract"
+rails_required_gems="rails rack rack-test mocha mysql postgres sqlite3-ruby memcached memcache-client bundler RedCloth multimap abstract"
 
 
 #
@@ -34,14 +34,12 @@ echo -e "\nInstalling rubies and gems with rvm..."
 
 for ruby in $ruby_versions
 do
-	echo
-	echo "installing '${ruby}'"
+echo -e "\ninstalling '${ruby}'"
 	rvm ${ruby} install
 	echo "installing gems : '${rails_required_gems}'"
 	for gem in $rails_required_gems
 	do
-		echo
-		echo "============================="
+		echo -e "\n============================="
 		echo "installing ${gem}..."
 		rvm ${ruby} gem install ${gem}
 	done
@@ -55,14 +53,13 @@ cd ~/projects && git clone git://github.com/rails/rails.git rails && cd rails &&
 
 for ruby in $ruby_versions
 do
-	echo
-	echo "bunding gems for ${ruby}"
+echo -e "\nbunding gems for ${ruby}"
 	rvm use ${ruby}
 	gem bundle
 done
 
 
-echo "Fetching Cinabox"
+echo -e "\nFetching Cinabox"
 echo
 cd ~/projects && git clone git://github.com/thewoolleyman/cinabox.git cinabox
 
@@ -73,8 +70,8 @@ cat <<-HappyMessage
 
 Notes:
 
-  * To run the rails test suite against all installed rubies simply run either ${test_prefix}_json or ${test_prefix}_verbose or ${test_prefix}_yaml
-  * The verbose tester runs the standard tests vs the rails in $user_project_dir with all installed rubies
+  * To run the rails test suite against all installed rubies simply run either ~/projects/json_tester.sh, yaml_tester.sh or verbose_tester.sh
+  * The verbose tester runs the standard tests vs the rails in ~/project/rails with all installed rubies
   * If you want to just test vs one version of ruby, just rvm use that version, and then run rake test
   * This script does not setup cinabox - if you want cinabox setup you will need to do it yourself.
 

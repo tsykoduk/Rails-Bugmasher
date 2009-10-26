@@ -33,51 +33,35 @@ BeginMessage
 while :
 	do
 
-		echo "Choose one of the following:"
-		echo "0 After Distro Run, Install Rubies"
-		echo "1 Install Archlinux Support (Not Done)"
-		echo "2 Install Centos Support (Not Done)"
-		echo "3 Install Debian/Ubuntu Support"
-		echo "4 Install Gentoo Support (Not Done)"
-		echo "5 Install Snow Lepoard Support (Not Done)"
-		echo "q Quit"
-		echo
+		echo -e "Choose one of the following: \n0 After Distro Run, Install Rubies \n1 Install Archlinux Support (Not Done) \n2 Install Centos Support (Not Done) \n4 Install Gentoo Support (Not Done) \n5 Install Snow Lepoard Support (Not Done) \nq Quit\n"
+
 
 		read response 
 		case $response in
 			[0]*)
-				echo
-				echo "Installing Rubies"
-				./lib/ruby_rails_setup.sh
-				echo
+			echo -e "\nInstalling Rubies"
+
 			;;
 			[1]*)
-				echo
-				echo "Archlinux Support Not Implemtented. Sorry"
+			echo -e "\nArchlinux Support Not Implemtented. Sorry"
 			;;
 			[2]*)
-				echo
-				echo "Centos support not done yet. Sorry"
+			echo -e "\nCentos support not done yet. Sorry"
 			;;
 			[3]*)
-				echo
-				echo "Installing Debain Support"
+			echo -e "\nInstalling Debain Support"
 				./lib/debian_setup.sh
-				echo
+
 			;;
 			[4]*)
-				echo
-				echo "Gentoo Support Coming"
+			echo -e "\nGentoo Support Coming"
 			;;
 			[5]*)
-				echo
-				echo "Snow Lepoard Support soon"
+			echo -e "\nSnow Lepoard Support soon"
 			;;
 			[q]*)
 				clear
-				echo
-				echo "Happy Bugmashing!"
-				echo
+				echo -e "\nHappy Bugmashing!\n"
 				cat <<-HappyMessage
 
 				Notes:
