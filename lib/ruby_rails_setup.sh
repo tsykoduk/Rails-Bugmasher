@@ -24,10 +24,9 @@ echo "gem: --no-rdoc --no-ri" > ~/gemrc
 sudo mv ./gemrc /etc/
 
 echo -e "\nInstalling and configuring rvm..."
-cd "$user_src_dir" && git clone git://github.com/wayneeseguin/rvm.git && cd rvm && ./install
+cd "$user_src_dir" && git clone git://github.com/wayneeseguin/rvm.git temp_rvm && .temp_rvm/install && rm -rf temp_rvm
 echo "rvm_install_on_use_flag=1" > ~/.rvmrc
 
-exec bash
 source ~/.bash_profile
 
 echo -e "\nInstalling rubies and gems with rvm..."
@@ -79,6 +78,5 @@ all done.... happy bugmashing!!!
 
 HappyMessage
 
-echo pause
-echo
+echo -e "\npause"
 read pause
