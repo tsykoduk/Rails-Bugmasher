@@ -38,8 +38,8 @@ echo -e "\ninstalling '${ruby}'"
 	echo "installing gems : '${rails_required_gems}'"
 	for gem in $rails_required_gems
 	do
-		echo -e "\n============================="
-		echo "installing ${gem}..."
+		echo -e "\n=============================\n"
+		echo "\ninstalling ${gem}..."
 		rvm ${ruby} gem install ${gem}
 	done
 done
