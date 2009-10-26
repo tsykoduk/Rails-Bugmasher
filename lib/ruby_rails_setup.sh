@@ -10,7 +10,9 @@ cd ~
 # Ok, let's move on
 #
 
-ruby_versions="${ruby_versions:-"1.8.6 1.8.7 1.9.1 jruby ree"}"
+#you can add jruby if you want to
+
+ruby_versions="${ruby_versions:-"1.8.6 1.8.7 1.9.1 ree"}"
 rails_required_gems="rails rack rack-test cucumber mocha rspec rspec-rails mysql postgres sqlite3-ruby memcached memcache-client builder bundler mongrel mongrel_cluster passenger thin polyglot test-unit treetop erubis term-ansicolor eventmachine diff-lcs daemons RedCloth multimap abstract"
 
 
@@ -25,6 +27,7 @@ echo -e "\nInstalling and configuring rvm..."
 cd "$user_src_dir" && git clone git://github.com/wayneeseguin/rvm.git && cd rvm && ./install
 echo "rvm_install_on_use_flag=1" > ~/.rvmrc
 
+exec bash
 source ~/.bash_profile
 
 echo -e "\nInstalling rubies and gems with rvm..."
@@ -37,6 +40,8 @@ do
 	echo "installing gems : '${rails_required_gems}'"
 	for gem in $rails_required_gems
 	do
+		echo
+		echo "============================="
 		echo "installing ${gem}..."
 		rvm ${ruby} gem install ${gem}
 	done

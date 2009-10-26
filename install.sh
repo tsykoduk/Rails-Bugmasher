@@ -1,6 +1,16 @@
 #! /bin/bash
 
 clear
+echo "environment checks"
+
+user="$(whoami)"
+if [[ "root" = "$user" ]] ; then
+  echo -e "root user support is not yet implemented. Please log in as a normal user"
+  exit 1
+fi
+
+clear
+
 cat <<-BeginMessage
 Use this script to build a *nix system for testing rails, or to build a rails dev system
 
@@ -13,8 +23,6 @@ Version 0.0.1
 Use at your own risk, yadda yadda yadda
 
 Only the Debian and Rubies installer work so far.
-
-do *NOT* run as root!!
 
 *do* run in the home directory of a user for which you do not care
 
