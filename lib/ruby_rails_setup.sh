@@ -11,7 +11,7 @@ cd ~
 #
 
 ruby_versions="${ruby_versions:-"1.8.6 1.8.7 1.9.1 jruby ree"}"
-rails_required_gems="rails rack rack-test cucumber mocha rspec rspec-rails mysql postgres sqlite3-ruby memcached memcache-client builder bundler mongrel mongrel_cluster passenger thin polyglot test-unit treetop erubis term-ansicolor eventmachine diff-lcs daemons"
+rails_required_gems="rails rack rack-test cucumber mocha rspec rspec-rails mysql postgres sqlite3-ruby memcached memcache-client builder bundler mongrel mongrel_cluster passenger thin polyglot test-unit treetop erubis term-ansicolor eventmachine diff-lcs daemons RedCloth multimap abstract"
 
 
 #
@@ -46,13 +46,22 @@ mkdir ~/projects
 
 echo -e "\nFetching edge rails"
 echo
-cd ~/projects && git clone git://github.com/rails/rails.git rails && cd rails/actionpack && gem bundle
+cd ~/projects && git clone git://github.com/rails/rails.git rails && cd rails && git branch --track 2-3-stable origin/2-3-stable && cd actionpack
+
+for ruby in $ruby_versions
+do
+	echo
+	echo "bunding gems for ${ruby}"
+	rvm use ${ruby}
+	gem bundle
+done
+
 
 echo "Fetching Cinabox"
 echo
 cd ~/projects && git clone git://github.com/thewoolleyman/cinabox.git cinabox
 
-cp ./testers/* ~/projects/
+cp ~/Rails-Bugmasher/testers/* ~/projects/
 
 
 cat <<-HappyMessage
