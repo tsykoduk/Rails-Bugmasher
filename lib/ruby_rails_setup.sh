@@ -39,7 +39,7 @@ echo -e "\ninstalling '${ruby}'"
 	for gem in $rails_required_gems
 	do
 		echo -e "\n=============================\n"
-		echo "\ninstalling ${gem}..."
+		echo -e "\ninstalling ${gem}..."
 		rvm ${ruby} gem install ${gem}
 	done
 done
