@@ -40,7 +40,7 @@ while :
 		case $response in
 			[0]*)
 			echo -e "\nInstalling Rubies"
-
+				./lib/ruby_rails_setup.sh
 			;;
 			[1]*)
 			echo -e "\nArchlinux Support Not Implemtented. Sorry"
