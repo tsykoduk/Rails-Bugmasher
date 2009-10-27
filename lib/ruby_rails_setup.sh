@@ -41,13 +41,14 @@ echo -e "\nInstalling rubies and gems with rvm..."
 for ruby in $ruby_versions
 do
 echo -e "\ninstalling '${ruby}'"
-	rvm ${ruby} install
+	rvm install ${ruby}
 	echo "installing gems : '${rails_required_gems}'"
+	rvm ${ruby}
 	for gem in $rails_required_gems
 	do
 		echo -e "\n=============================\n"
 		echo -e "\ninstalling ${gem}..."
-		rvm ${ruby} gem install ${gem}
+		gem install ${gem}
 	done
 done
 
