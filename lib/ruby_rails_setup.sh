@@ -61,7 +61,7 @@ cd ~/projects && git clone git://github.com/rails/rails.git rails && cd rails &&
 for ruby in $ruby_versions
 do
 echo -e "\nbunding gems for ${ruby}"
-	rvm use ${ruby}
+	rvm ${ruby}
 	gem bundle
 done
 
