@@ -20,8 +20,14 @@ rails_required_gems="rails rack rack-test mocha mysql postgres sqlite3-ruby memc
 # rvm, rubies and gems
 #
 
-echo "gem: --no-rdoc --no-ri" > ~/gemrc
-sudo mv ./gemrc /etc/
+echo -e "\nWe are going to replace your gemrc with the following line: \ngem: --no-rdoc --no-ri\nOk? (y/n)"
+read response 
+	if [[ "y" = "$response" ]] ; then
+		echo "gem: --no-rdoc --no-ri" > ~/gemrc
+		sudo mv ./gemrc /etc/
+	else
+		echo -e "\nOk. skipping step"
+	fi
 
 echo -e "\nInstalling and configuring rvm..."
 cd "$user_src_dir" && git clone git://github.com/wayneeseguin/rvm.git temp_rvm && .temp_rvm/install && rm -rf temp_rvm
