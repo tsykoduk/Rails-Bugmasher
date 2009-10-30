@@ -1,5 +1,4 @@
-echo -e "tested vs Ubuntu Karmic. Any recient debian _should_ work"
-echo 
+echo -e "\n\n\n\n\n\tested vs Ubuntu Karmic. Any recient debian _should_ work\n\n\n\n\n"
 #
 # System Update
 #
