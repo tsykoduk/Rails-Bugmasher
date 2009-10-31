@@ -15,20 +15,15 @@ cat <<-BeginMessage
 Use this script to build a *nix system for testing rails, or to build a rails dev system
 
 Copyleft 2009 by Greg Nokes
-
 Built on the hypercool RVM
 
-Version 0.0.1
+Version 0.0.3 <-- SEE MA, I's MAKIN PROGRESS
 
-Use at your own risk, yadda yadda yadda
-
-Only the Debian and Rubies installer work so far.
-
-*do* run in the home directory of a user for which you do not care
+Use at your own risk, yadda yadda yadda, *do* run in the home directory of a user for which you *do* *not* *care*
+Works best with passwordless sudo
 
 BeginMessage
 
-#menu here
 
 while :
 	do
@@ -50,23 +45,23 @@ menu
 		read response 
 		case $response in
 			[0]*)
-			echo -e "\nWhich Distro? (A/C/D/G/M) :"
+			echo -e "\nWhich Distro? Arch: 0, Centos: 1, Debian: 2, Gentoo: 3, Mac: 4"
 			read answer
 			case $answer in
-				[A]*)
-				./lib/archlinux_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
+				[0]*)
+					./lib/archlinux_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
 				;;
-				[C]*)
-				./lib/centos_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
+				[1]*)
+					./lib/centos_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
 				;;	
-				[D]*)
-				./lib/debian_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
+				[2]*)
+					./lib/debian_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
 				;;		
-				[G]*)
-				./lib/gentoo_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
+				[3]*)
+					./lib/gentoo_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
 				;;
-				[M]*)
-				./lib/OS_10.6_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
+				[4]*)
+					./lib/OS_10.6_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
 				;;
 			esac
 			;;
@@ -91,8 +86,11 @@ menu
 			;;
 			[6]*)
 			echo -e "\nInstalling Rubies"
-				./lib/ruby_rails_setup.sh
+				./lib/ruby_setup.sh
 			;;
+			[7]*)
+			echo -e "\nInstalling bugmashing rails enviroment"
+				./lib/rails_testing_setup.sh
 			[q]*)
 				clear
 				echo -e "\nHappy Bugmashing!\n"
