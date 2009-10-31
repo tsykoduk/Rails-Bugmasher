@@ -91,6 +91,7 @@ menu
 			[7]*)
 			echo -e "\nInstalling bugmashing rails enviroment"
 				./lib/rails_testing_setup.sh
+			;;
 			[q]*)
 				clear
 				echo -e "\nHappy Bugmashing!\n"
