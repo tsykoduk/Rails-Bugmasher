@@ -33,20 +33,49 @@ BeginMessage
 while :
 	do
 
-		echo -e "Choose one of the following: \n0 After Distro Run, Install Rubies \n1 Install Archlinux Support (Not Done) \n2 Install Centos Support (Not Done) \n4 Install Gentoo Support (Not Done) \n5 Install Snow Lepoard Support (Not Done) \nq Quit\n"
+cat <<-menu 
+Choose one of the following
+=-=-=-=-=-=-=-=-=-=-=-=-=-= 
+0 Run the whole shebang 
+1 Install Archlinux Support (Not Done)
+2 Install Centos Support
+3 Install Debian Support
+4 Install Gentoo Support (Not Done)
+5 Install Mac Support (EXPERMENTAL)
+6 Install Rubies
+7 Install Rails Testing Enviroment
+q Quit
 
-
+menu
 		read response 
 		case $response in
 			[0]*)
-			echo -e "\nInstalling Rubies"
-				./lib/ruby_rails_setup.sh
+			echo -e "\nWhich Distro? (A/C/D/G/M) :"
+			read answer
+			case $answer in
+				[A]*)
+				./lib/archlinux_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
+				;;
+				[C]*)
+				./lib/centos_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
+				;;	
+				[D]*)
+				./lib/debian_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
+				;;		
+				[G]*)
+				./lib/gentoo_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
+				;;
+				[M]*)
+				./lib/OS_10.6_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
+				;;
+			esac
 			;;
 			[1]*)
 			echo -e "\nArchlinux Support Not Implemtented. Sorry"
 			;;
 			[2]*)
-			echo -e "\nCentos support not done yet. Sorry"
+			echo -e "\nCentos support"
+				./lib/centos_setup.sh
 			;;
 			[3]*)
 			echo -e "\nInstalling Debain Support"
@@ -57,7 +86,12 @@ while :
 			echo -e "\nGentoo Support Coming"
 			;;
 			[5]*)
-			echo -e "\nSnow Lepoard Support soon"
+			echo -e "\nMac Support"
+				./lib/OS_10.6_setup.sh
+			;;
+			[6]*)
+			echo -e "\nInstalling Rubies"
+				./lib/ruby_rails_setup.sh
 			;;
 			[q]*)
 				clear
