@@ -66,7 +66,8 @@ menu
 			esac
 			;;
 			[1]*)
-			echo -e "\nArchlinux Support Not Implemtented. Sorry"
+			echo -e "\nArchlinux Support"
+				./lib/archlinux_setup.sh
 			;;
 			[2]*)
 			echo -e "\nCentos support"
