@@ -38,7 +38,5 @@ all done.... happy bugmashing!!!
 
 HappyMessage
 
-rvm 1.8.7
-
 echo -e "\npause"
 read pause

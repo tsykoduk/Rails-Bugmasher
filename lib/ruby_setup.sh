@@ -55,6 +55,3 @@ done
 rvm 1.8.7
 
 echo -e "Rubies set up. begin wooting"
-
-echo -e "\npause"
-read pause
