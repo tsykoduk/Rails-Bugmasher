@@ -36,7 +36,7 @@ Choose one of the following
 2 Install Centos Support
 3 Install Debian Support
 4 Install Gentoo Support (Not Done)
-5 Install Mac Support (EXPERMENTAL)
+5 Install Mac Support (EXPERIMENTAL)
 6 Install Rubies
 7 Install Rails Testing Enviroment
 q Quit
