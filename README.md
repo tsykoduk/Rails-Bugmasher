@@ -3,7 +3,7 @@ RailsBridge BugMash Server Script
 
 *(I need a longer name. taking submissions.)*
 
-This is a script to take a debian box from ground zero to Rails Testing Machine. You will end up with MySQL, Postgres, Sqlite, Memcached and many rubies, as well as automated testing scripts.
+This is a script to take a linux or mac box from ground zero to Rails Testing Machine. You will end up with MySQL, Postgres, Sqlite, Memcached and many rubies, as well as automated testing scripts.
 
 Installation instructions
 -------------------------
