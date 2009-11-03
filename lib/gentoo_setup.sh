@@ -16,7 +16,8 @@ echo -e "\n\n\n\n\nHold on, this might take a while......\n\n\n\n\n"
 
 echo -e "Updating system"
 
-sudo emerge --sync
+## disabled for testing
+## sudo emerge --sync 
 sudo emerge --update --deep world
 
 echo -e "If you installed any system updates, a reboot at this point would be advisable, do you wish to reboot?
