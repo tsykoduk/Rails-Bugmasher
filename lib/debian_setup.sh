@@ -10,7 +10,7 @@ sudo aptitude dist-upgrade -y
 # System Libraries
 #
 echo -e "\nNow installing rails test suite required system libraries..."
-sudo aptitude install -y sudo build-essential git-core git-svn subversion ruby-dev mysql-server mysql-client sqlite3 nginx ssh postgresql memcached rake libmysqlclient-dev libpq-dev libsqlite3-dev curl wget sun-java6-jdk libreadline5-dev libssl-dev bison libopenssl-ruby libz-dev zlib1g zlib1g-dev libxml2 libxml2-dev libxslt-dev locate libssl-dev openssl
+sudo aptitude install -y sudo build-essential git-core git-svn subversion ruby-dev nginx ssh postgresql memcached rake libmysqlclient-dev libpq-dev libsqlite3-dev curl wget sun-java6-jdk libreadline5-dev libssl-dev bison libopenssl-ruby libz-dev zlib1g zlib1g-dev libxml2 libxml2-dev libxslt-dev locate libssl-dev openssl
 
 sudo /etc/init.d/mysql restart
 sudo /etc/init.d/postgresql-8.4 restart

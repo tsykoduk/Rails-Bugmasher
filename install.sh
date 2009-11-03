@@ -32,10 +32,10 @@ cat <<-menu
 Choose one of the following
 =-=-=-=-=-=-=-=-=-=-=-=-=-= 
 0 Run the whole shebang 
-1 Install Archlinux Support (Not Done)
+1 Install Archlinux 
 2 Install Centos Support
 3 Install Debian Support
-4 Install Gentoo Support (Not Done)
+4 Install Gentoo Support
 5 Install Mac Support (EXPERIMENTAL)
 6 Install Rubies
 7 Install Rails Testing Enviroment
@@ -66,11 +66,11 @@ menu
 			esac
 			;;
 			[1]*)
-			echo -e "\nArchlinux Support"
+			echo -e "\nInstalling Archlinux Support"
 				./lib/archlinux_setup.sh
 			;;
 			[2]*)
-			echo -e "\nCentos support"
+			echo -e "\nInstalling Centos support"
 				./lib/centos_setup.sh
 			;;
 			[3]*)
@@ -79,7 +79,7 @@ menu
 
 			;;
 			[4]*)
-			echo -e "\nGentoo Support Coming"
+			echo -e "\nInstalling Gentoo Support"
 				./lib/gentoo_setup.sh
 			;;
 			[5]*)
