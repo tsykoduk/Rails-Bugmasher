@@ -1,8 +1,4 @@
-##
-#setting up rails for testing
-##
-
-ruby_versions = "1.8.6 1.8.7 1.9.1 ree"
+ruby_versions="${ruby_versions:-"1.8.6 1.8.7 1.9.1 ree"}"
 
 echo -e "\ngetting rails ready for bugmashing"
 
