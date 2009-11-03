@@ -80,6 +80,7 @@ menu
 			;;
 			[4]*)
 			echo -e "\nGentoo Support Coming"
+				./lib/gentoo_setup.sh
 			;;
 			[5]*)
 			echo -e "\nMac Support"
