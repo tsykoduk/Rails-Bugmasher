@@ -3,6 +3,10 @@
 clear
 echo "environment checks"
 
+# let's make sure we are somewhere sane
+cd ~
+
+
 user="$(whoami)"
 if [[ "root" = "$user" ]] ; then
   echo -e "root user support is not yet implemented. Please log in as a normal user"
