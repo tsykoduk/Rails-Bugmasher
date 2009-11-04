@@ -10,7 +10,7 @@ cd ~
 # Ok, let's move on
 #
 
-#you can add jruby if you want to
+#you can add jruby if you want to - it is slow to install gems, and has some special requirements 
 
 ruby_versions="${ruby_versions:-"1.8.6 1.8.7 1.9.1 ree"}"
 rails_required_gems="rails rack rack-test mocha mysql postgres sqlite3-ruby memcached memcache-client bundler RedCloth multimap abstract"
@@ -20,13 +20,13 @@ rails_required_gems="rails rack rack-test mocha mysql postgres sqlite3-ruby memc
 # rvm, rubies and gems
 #
 
-echo -e "\nWe are going to replace your gemrc with the following line: \ngem: --no-rdoc --no-ri\nOk? (y/n)"
+echo -e "\nWe are going to replace your gemrc with the following line: \ngem: --no-rdoc --no-ri\n(If you have no clue what this means, it's more then likely ok)\nOk?(y/n)"
 read response 
 	if [[ "y" = "$response" ]] ; then
 		echo "gem: --no-rdoc --no-ri" > ~/gemrc
 		sudo mv ./gemrc /etc/
 	else
-		echo -e "\nOk. skipping step"
+		echo -e "\nFine. Skipping this step"
 	fi
 
 echo -e "\nInstalling and configuring rvm..."
@@ -52,6 +52,10 @@ echo -e "\ninstalling '${ruby}'"
 	done
 done
 
-rvm 1.8.7
+echo -e "\n\nWhat do you want to use as your default? (1.8.6 1.8.7 1.9.1 or ree)\n"
+read response 
 
+rvm use $response
+	
+	
 echo -e "Rubies set up. begin wooting"
