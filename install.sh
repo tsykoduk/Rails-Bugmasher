@@ -21,7 +21,7 @@ Use this script to build a *nix system for testing rails, or to build a rails de
 Copyleft 2009 by Greg Nokes
 Built on the hypercool RVM
 
-Version 0.0.3 <-- SEE MA, I's MAKIN PROGRESS
+Version 0.9.9 <-- SEE MA, I's MAKIN PROGRESS
 
 Use at your own risk, yadda yadda yadda, *do* run in the home directory of a user for which you *do* *not* *care*
 Works best with passwordless sudo

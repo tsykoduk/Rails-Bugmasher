@@ -6,11 +6,10 @@
 # let's make sure we are somewhere sane
 
 cd ~
+
 #
 # Ok, let's move on
 #
-
-#you can add jruby if you want to - it is slow to install gems, and has some special requirements 
 
 ruby_versions="${ruby_versions:-"1.8.6 1.8.7 1.9.1 ree"}"
 rails_required_gems="rails rack rack-test mocha mysql postgres sqlite3-ruby memcached memcache-client bundler RedCloth multimap abstract"
