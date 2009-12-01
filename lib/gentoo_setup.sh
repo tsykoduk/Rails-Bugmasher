@@ -13,8 +13,9 @@ echo -e "\n\n\n\n\nHold on, this might take a while......\n\n\n\n\n"
 
 echo -e "Updating system"
 
-## disabled for testing
-## sudo emerge --sync 
+disabled for testing
+
+sudo emerge --sync 
 
 sudo emerge --update --deep world
 
