@@ -1,14 +1,3 @@
-echo -e "\nWOOOOT WOOOT WOOT not ready - no fair peeking\n\n\n\n\n\n\n"
-echo -e "Following is EXPERMENTAL. Do not use unless you are a geek's geek.
-         \n(type 'yes' or 'no') > "
-read response
-if [[ "yes" = "$response" ]] ; then
-	echo -e "\nOk, you're the boss"
-else
-  exit 1
-fi
-
-
 echo -e "\n\n\n\n\nHold on, this might take a while......\n\n\n\n\n"
 
 echo -e "Updating system"

@@ -4,7 +4,7 @@
 
 source ~/.bash_profile
 
-ruby_versions="${ruby_versions:-"1.8.6 1.8.7 1.9.1 ree"}"
+ruby_versions="${ruby_versions:-"1.9.2-head"}"
 
 echo -e "\ngetting rails ready for bugmashing"
 
@@ -12,15 +12,23 @@ mkdir ~/projects
 
 echo -e "\nFetching edge rails"
 echo
-cd ~/projects && git clone git://github.com/rails/rails.git rails && cd rails && git branch --track 2-3-stable origin/2-3-stable && cd actionpack
+cd ~/projects && git clone git://github.com/rails/rails.git rails && cd rails && git branch
 
-for ruby in $ruby_versions
-do
-echo -e "\nbundling gems for ${ruby}"
-	rvm ${ruby}
-	gem bundle
-done
+echo -e "\nInstalling rubies and gems with rvm..."
 
+cd ~/projects 
+
+# Switch to 1.9.2-head and gemset rails3, create if it doesn't exist. 
+rvm --create use 1.9.2-head@rails3
+
+# Download the gems(et) file for rails3 beta 3:
+curl -L http://rvm.beginrescueend.com/gemsets/rails3b3.gems -o rails3b3.gems 
+
+# Load the gems(et) file into the current gem environment.
+rvm gemset import rails3b3.gems
+
+# Check to see we now have Rails 3.0.0 beta3
+rails --version
 
 echo -e "\nFetching Cinabox"
 echo
