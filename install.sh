@@ -75,7 +75,7 @@ menu
 			;;
 			[2]*)
 			echo -e "\nInstalling Centos support"
-				./lib/centos_setup.sh
+				lib/centos_setup.sh
 			;;
 			[3]*)
 			echo -e "\nInstalling Debain Support"
