@@ -35,12 +35,6 @@ echo "if [[ -s \"$HOME/.rvm/scripts/rvm\" ]]  ; then source \"$HOME/.rvm/scripts
 
 source ~/.bash_profile
 
-#need autoconf because centos's is soooo old.
-# if [[ "$centos" = "true"]]
-	#rvm package install autoconf
-# fi
-#echo -e "\nInstalling rubies and gems with rvm..."
-
 for ruby in $ruby_versions
 do
   echo -e "\n\ninstalling '${ruby}'"
