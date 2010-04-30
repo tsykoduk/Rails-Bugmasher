@@ -13,6 +13,10 @@ Installation instructions
 3. There really needs to be a step three - don't you think?
 4. run the installer
 
+*NOTE*
+
+Centos is currently borked. Please do not use.
+
 
 What's it doing under the hood?
 -------------------------------
