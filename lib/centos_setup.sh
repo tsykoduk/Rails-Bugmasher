@@ -29,4 +29,11 @@ echo -e "\ninstalling database engines"
 
 sudo yum install mysql-server mysql-devel postgresql-server postgresql-devel memcached sqlite sqlite-devel
 
-centos = "true"
+echo -e "Need to install a local version of Automake. Need RVM beforehand"
+
+echo -e "\nInstalling and configuring rvm..."
+cd ~ && git clone git://github.com/wayneeseguin/rvm.git temp_rvm && cd temp_rvm && ./install && cd ~ && rm -rf temp_rvm
+
+rvm install 1.8.7
+rvm package install automake
+
