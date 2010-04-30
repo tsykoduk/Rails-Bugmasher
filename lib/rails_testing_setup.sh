@@ -6,9 +6,9 @@ source ~/.bash_profile
 
 #distro specific stuff
 
-rvm_apt_get_binary="$(which aptitude 2&gt; /dev/null)" 
-rvm_pacman_binary="$(which pacman 2&gt; /dev/null)" 
-rvm_yum_binary="$(which yum 2&gt; /dev/null)"
+rvm_apt_get_binary="$(which aptitude 2> /dev/null)"
+rvm_pacman_binary="$(which pacman 2> /dev/null)"
+rvm_yum_binary="$(which yum 2> /dev/null)"
 
 # # Debian based systems # 
 if [[ ! -z "$rvm_apt_get_binary" ]] ; then  

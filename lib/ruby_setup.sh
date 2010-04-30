@@ -4,7 +4,7 @@
 # User configurable settings
 
 
-ruby_versions="${ruby_versions:-"1.8.7 1.9.2-head"}"
+ruby_versions="${ruby_versions:-"1.8.7"}"
 
 #Deprecated with Rails3
 #rails_required_gems="rails rack rack-test mocha mysql postgres sqlite3-ruby memcached memcache-client bundler RedCloth multimap abstract"
