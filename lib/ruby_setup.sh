@@ -4,7 +4,7 @@
 # User configurable settings
 
 
-ruby_versions="${ruby_versions:-"1.9.2-head"}"
+ruby_versions="${ruby_versions:-"1.8.7 1.9.2-head"}"
 #rails_required_gems="rails rack rack-test mocha mysql postgres sqlite3-ruby memcached memcache-client bundler RedCloth multimap abstract"
 
 # let's make sure we are somewhere sane
@@ -53,6 +53,9 @@ source ~/.bash_profile
 #read response 
 
 #rvm use $response
+
+echo -e "\ninstalling '${ruby}'"
+
 	
 	
 echo -e "Rubies set up. begin wooting"
