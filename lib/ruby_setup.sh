@@ -46,20 +46,3 @@ done
 	
 echo -e "\n\nRubies set up. begin wooting"
 
-echo -e "\nGetting Jiggy with Rails"
-
-mkdir ~/projects
-
-cd ~/projects 
-
-# Switch to 1.9.2-head and gemset rails3, create if it doesn't exist. 
-rvm --create use 1.9.2-head@rails3
-
-# Download the gems(et) file for rails3 beta 3:
-curl -L http://rvm.beginrescueend.com/gemsets/rails3b3.gems -o rails3b3.gems 
-
-# Load the gems(et) file into the current gem environment.
-rvm gemset import rails3b3.gems
-
-# Check to see we now have Rails 3.0.0 beta3
-rails --version

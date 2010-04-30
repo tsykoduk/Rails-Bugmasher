@@ -21,16 +21,27 @@ elif [[ ! -z "$rvm_yum_binary" ]] ; then
 
 rvm package install autoconf
 
-	
-
 fi
-
-
 
 
 ruby_versions="${ruby_versions:-"1.9.2-head"}"
 
 echo -e "\ngetting rails ready for bugmashing"
+
+echo -e "\nGetting Jiggy with Rails"
+
+mkdir ~/projects
+
+cd ~/projects 
+
+# Switch to 1.9.2-head and gemset rails3, create if it doesn't exist. 
+rvm --create use 1.9.2-head@rails3
+
+# Download the gems(et) file for rails3 beta 3:
+curl -L http://rvm.beginrescueend.com/gemsets/rails3b3.gems -o rails3b3.gems 
+
+# Load the gems(et) file into the current gem environment.
+rvm gemset import rails3b3.gems
 
 mkdir ~/projects
 
