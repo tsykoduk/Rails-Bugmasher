@@ -35,27 +35,14 @@ source ~/.bash_profile
 #moved to the rails setup
 #echo -e "\nInstalling rubies and gems with rvm..."
 
-#for ruby in $ruby_versions
-#do
-#echo -e "\ninstalling '${ruby}'"
-#	rvm install ${ruby}
-#	echo "installing gems : '${rails_required_gems}'"
-#	rvm ${ruby}
-#	for gem in $rails_required_gems
-#	do
-#		echo -e "\n=============================\n"
-#		echo -e "\ninstalling ${gem}..."
-#		gem install ${gem}
-#	done
-#done
-#
-#echo -e "\n\nWhat do you want to use as your default? (1.8.6 1.8.7 1.9.1 or ree)\n"
-#read response 
-
-#rvm use $response
-
-echo -e "\ninstalling '${ruby}'"
+for ruby in $ruby_versions
+do
+  echo -e "\n\ninstalling '${ruby}'"
+	rvm install ${ruby}
+	echo "installing gems : '${rails_required_gems}'"
+	rvm ${ruby}
+done
 
 	
 	
-echo -e "Rubies set up. begin wooting"
+echo -e "\n\nRubies set up. begin wooting"
