@@ -4,7 +4,7 @@ clear
 echo "environment checks"
 
 # let's make sure we are somewhere sane
-cd ~
+# cd ~
 
 
 user="$(whoami)"
@@ -75,7 +75,7 @@ menu
 			;;
 			[2]*)
 			echo -e "\nInstalling Centos support"
-				lib/centos_setup.sh
+				./lib/centos_setup.sh
 			;;
 			[3]*)
 			echo -e "\nInstalling Debain Support"
