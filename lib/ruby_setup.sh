@@ -31,7 +31,7 @@ cd ~ && git clone git://github.com/wayneeseguin/rvm.git temp_rvm && cd temp_rvm 
 
 echo "rvm_install_on_use_flag=1" > ~/.rvmrc
 
-echo "if [[ -s \"/home/"$(whoami)"/.rvm/scripts/rvm\" ]] ; then source /home/"$(whoami)"/.rvm/scripts/rvm ; fi" >> ~/.bash_profile
+echo "if [[ -s /home/"$(whoami)"/.rvm/scripts/rvm ]] ; then source /home/"$(whoami)"/.rvm/scripts/rvm ; fi" >> ~/.bash_profile
 
 source ~/.bash_profile
 
