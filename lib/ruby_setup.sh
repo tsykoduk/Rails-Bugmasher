@@ -3,12 +3,6 @@
 #
 # User configurable settings
 
-
-ruby_versions="${ruby_versions:-"1.8.7"}"
-
-#Deprecated with Rails3
-#rails_required_gems="rails rack rack-test mocha mysql postgres sqlite3-ruby memcached memcache-client bundler RedCloth multimap abstract"
-
 # let's make sure we are somewhere sane
 
 cd ~
@@ -35,14 +29,10 @@ echo "if [[ -s \"$HOME/.rvm/scripts/rvm\" ]]  ; then source \"$HOME/.rvm/scripts
 
 source ~/.bash_profile
 
-for ruby in $ruby_versions
-do
-  echo -e "\n\ninstalling '${ruby}'"
-	rvm install ${ruby}
-	echo "installing gems : '${rails_required_gems}'"
-	rvm ${ruby}
-done
-
+echo -e "\n\ninstalling 1.8.7"
+rvm install 1.8.7
+rvm use 1.8.7 --default
+rvm list
 	
 echo -e "\n\nRubies set up. begin wooting"
 

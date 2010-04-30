@@ -31,9 +31,9 @@ sudo yum install mysql-server mysql-devel postgresql-server postgresql-devel mem
 
 echo -e "Need to install a local version of Automake. Need RVM beforehand"
 
-echo -e "\nInstalling and configuring rvm..."
-cd ~ && git clone git://github.com/wayneeseguin/rvm.git temp_rvm && cd temp_rvm && ./install && cd ~ && rm -rf temp_rvm
+./lib/ruby_setup.sh
 
-rvm install 1.8.7
 rvm package install automake
+
+echo -e "Make sure that YOU DO NOT RUN THE ruby SET UP SCRIPT AGAIN"
 
