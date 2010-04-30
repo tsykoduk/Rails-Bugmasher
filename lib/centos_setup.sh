@@ -28,3 +28,5 @@ sudo yum install -y git svn gcc gcc-c++ kernel-devel zlib libtool bison gdb stra
 echo -e "\ninstalling database engines"
 
 sudo yum install mysql-server mysql-devel postgresql-server postgresql-devel memcached sqlite sqlite-devel
+
+centos = "true"
