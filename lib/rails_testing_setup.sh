@@ -11,16 +11,14 @@ rvm_pacman_binary="$(which pacman 2> /dev/null)"
 rvm_yum_binary="$(which yum 2> /dev/null)"
 
 # # Debian based systems # 
-if [[ ! -z "$rvm_apt_get_binary" ]] ; then  
+#if [[ ! -z "$rvm_apt_get_binary" ]] ; then  
 	 
 # # Arch Linux based system # 
-elif [[ ! -z "$rvm_pacman_binary" ]] ; then   
+#elif [[ ! -z "$rvm_pacman_binary" ]] ; then   
 	
 # # RedHat based system # 
-elif [[ ! -z "$rvm_yum_binary" ]] ; then 
-
-rvm package install autoconf
-
+if [[ ! -z "$rvm_yum_binary" ]] ; then 
+	rvm package install autoconf
 fi
 
 
