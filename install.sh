@@ -32,6 +32,8 @@ BeginMessage
 while :
 	do
 
+source ~/.bash_profile
+
 cat <<-menu 
 Choose one of the following
 =-=-=-=-=-=-=-=-=-=-=-=-=-= 
