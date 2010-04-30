@@ -27,13 +27,15 @@ sudo yum install -y git svn gcc gcc-c++ kernel-devel zlib libtool bison gdb stra
 
 echo -e "\ninstalling database engines"
 
-sudo yum install mysql-server mysql-devel postgresql-server postgresql-devel memcached sqlite sqlite-devel
+sudo yum install -y mysql-server mysql-devel postgresql-server postgresql-devel memcached sqlite sqlite-devel
 
 echo -e "Need to install a local version of Automake. Need RVM beforehand"
 
 ./lib/ruby_setup.sh
 
-rvm package install automake
+source ~/.bash_profile
+
+rvm package install autoconf
 
 echo -e "Make sure that YOU DO NOT RUN THE ruby SET UP SCRIPT AGAIN"
 

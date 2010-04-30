@@ -56,7 +56,7 @@ menu
 					./lib/archlinux_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
 				;;
 				[1]*)
-					./lib/centos_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
+					./lib/centos_setup.sh && ./lib/rails_testing_setup.sh
 				;;	
 				[2]*)
 					./lib/debian_setup.sh && ./lib/ruby_setup.sh && ./lib/rails_testing_setup.sh
